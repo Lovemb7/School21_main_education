@@ -3,7 +3,7 @@ SELECT menu.id         AS object_id,
 FROM   menu
 UNION
 SELECT person.id   AS object_id,
-       person.NAME AS object_name
+       person.name AS object_name
 FROM   person
 ORDER  BY object_id,
           object_name; 
