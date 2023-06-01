@@ -1,8 +1,12 @@
-select name
-from person
-join person_order on person.id = person_order.person_id
-join menu on person_order.menu_id = menu.id
-where gender = 'female' and (pizza_name = 'pepperoni pizza' or pizza_name = 'cheese pizza')
-group by name
-having count(*) > 1
-order by name;
+SELECT name
+FROM   person
+       JOIN person_order
+         ON person.id = person_order.person_id
+       JOIN menu
+         ON person_order.menu_id = menu.id
+WHERE  gender = 'female'
+       AND ( pizza_name = 'pepperoni pizza'
+              OR pizza_name = 'cheese pizza' )
+GROUP  BY name
+HAVING Count(*) > 1
+ORDER  BY name; 

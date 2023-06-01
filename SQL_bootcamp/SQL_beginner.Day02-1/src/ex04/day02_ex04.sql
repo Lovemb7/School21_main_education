@@ -1,5 +1,10 @@
-select pizza_name, name as pizzeria_name, price
-from menu
-join pizzeria on menu.pizzeria_id = pizzeria.id
-where pizza_name = 'mushroom pizza' or pizza_name = 'pepperoni pizza'
-order by pizza_name, pizzeria_name;
+SELECT pizza_name,
+       NAME AS pizzeria_name,
+       price
+FROM   menu
+       JOIN pizzeria
+         ON menu.pizzeria_id = pizzeria.id
+WHERE  pizza_name = 'mushroom pizza'
+        OR pizza_name = 'pepperoni pizza'
+ORDER  BY pizza_name,
+          pizzeria_name; 

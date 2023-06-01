@@ -1,12 +1,15 @@
-with period as (
-	select cast(pv as date) as missing_date
-	from generate_series('2022-01-01'::timestamp, '2022-01-10', '1 day') as pv), 
-	dates as (
-		select visit_date
-		from person_visits
-		where person_id = 1 or person_id = 2)
-	select missing_date
-	from period
-	left join dates on visit_date = missing_date
-	where visit_date isnull
-	order by visit_date;
+WITH period AS
+(
+       SELECT Cast(pv AS date)                                                AS missing_date
+       FROM   generate_series('2022-01-01'::timestamp, '2022-01-10', '1 day') AS pv), dates AS
+(
+       SELECT visit_date
+       FROM   person_visits
+       WHERE  person_id = 1
+       OR     person_id = 2)
+SELECT    missing_date
+FROM      period
+LEFT JOIN dates
+ON        visit_date = missing_date
+WHERE     visit_date ISNULL
+ORDER BY  visit_date;

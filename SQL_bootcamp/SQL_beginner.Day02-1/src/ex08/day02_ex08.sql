@@ -1,16 +1,28 @@
-select name
-from (select *
-	from (select name, id
-		from person
-		where (address = 'Moskow' or address = 'Samara') and gender = 'male') as p
-	join person_order on p.id = person_order.person_id) as p_ord
-join menu on p_ord.menu_id = menu.id
-where pizza_name = 'pepperoni pizza' or pizza_name = 'mushroom pizza'
-order by name desc;
+SELECT name
+FROM   (SELECT *
+        FROM   (SELECT name,
+                       id
+                FROM   person
+                WHERE  ( address = 'Moskow'
+                          OR address = 'Samara' )
+                       AND gender = 'male') AS p
+               JOIN person_order
+                 ON p.id = person_order.person_id) AS p_ord
+       JOIN menu
+         ON p_ord.menu_id = menu.id
+WHERE  pizza_name = 'pepperoni pizza'
+        OR pizza_name = 'mushroom pizza'
+ORDER  BY name DESC;
 
-select name
-from person
-join person_order on person.id = person_order.person_id
-join menu on menu.id = person_order.menu_id
-where person.gender = 'male' and (person.address = 'Moskow' or person.address = 'Samara') and (menu.pizza_name = 'mushroom pizza' or menu.pizza_name = 'pepperoni pizza')
-order by name desc;
+SELECT name
+FROM   person
+       JOIN person_order
+         ON person.id = person_order.person_id
+       JOIN menu
+         ON menu.id = person_order.menu_id
+WHERE  person.gender = 'male'
+       AND ( person.address = 'Moskow'
+              OR person.address = 'Samara' )
+       AND ( menu.pizza_name = 'mushroom pizza'
+              OR menu.pizza_name = 'pepperoni pizza' )
+ORDER  BY name DESC; 
