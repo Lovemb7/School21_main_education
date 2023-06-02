@@ -3,7 +3,7 @@ FROM   (SELECT *
         FROM   (SELECT name,
                        id
                 FROM   person
-                WHERE  ( address = 'Moskow'
+                WHERE  ( address = 'Moscow'
                           OR address = 'Samara' )
                        AND gender = 'male') AS p
                JOIN person_order
@@ -21,7 +21,7 @@ FROM   person
        JOIN menu
          ON menu.id = person_order.menu_id
 WHERE  person.gender = 'male'
-       AND ( person.address = 'Moskow'
+       AND ( person.address = 'Moscow'
               OR person.address = 'Samara' )
        AND ( menu.pizza_name = 'mushroom pizza'
               OR menu.pizza_name = 'pepperoni pizza' )
